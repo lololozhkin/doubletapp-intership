@@ -1,0 +1,34 @@
+version: "3.1"
+
+services:
+  web:
+    build:
+      context: .
+    environment:
+      DB_NAME: 'words_data'
+      DB_PASSWORD: 'abacabadabacaba'
+      DB_USER: 'doubletapp_api'
+      DB_HOST: 'postgres'
+      DB_PORT: '5432'
+      SECRET_KEY: '2283221337'
+    ports:
+      - '8080:13337'
+    depends_on:
+      - postgres
+
+    command: >
+      sh -c "python3 manage.py makemigrations &&
+             python3 manage.py migrate &&
+             gunicorn --bind 0.0.0.0:13337 double_trouble.wsgi:application"
+
+  postgres:
+    image: postgres:9.6.21-alpine
+    environment:
+      POSTGRES_PASSWORD: 'abacabadabacaba'
+      POSTGRES_USER: 'doubletapp_api'
+      POSTGRES_DB: 'words_data'
+    volumes:
+      - words-db:/var/lib/postgresql/data
+
+volumes:
+  words-db:
