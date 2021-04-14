@@ -11,15 +11,19 @@ services:
       DB_HOST: 'postgres'
       DB_PORT: '5432'
       SECRET_KEY: '2283221337'
+      API_SECRET: 'i love doubletapp'
+      DJANGO_DEBUG: 'True'
     ports:
       - '8080:13337'
     depends_on:
       - postgres
+    restart: on-failure
 
     command: >
-      sh -c "python3 manage.py makemigrations &&
+      sh -c "/app/wait-for postgres:5432 --timeout 5 -- 
+             python3 manage.py makemigrations &&
              python3 manage.py migrate &&
-             gunicorn --bind 0.0.0.0:13337 double_trouble.wsgi:application"
+             gunicorn --bind 0.0.0.0:13337 --access-logfile - double_trouble.wsgi:application"
 
   postgres:
     image: postgres:9.6.21-alpine
@@ -29,6 +33,7 @@ services:
       POSTGRES_DB: 'words_data'
     volumes:
       - words-db:/var/lib/postgresql/data
+    restart: on-failure
 
 volumes:
   words-db:
