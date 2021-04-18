@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
 
-def api_func(request: HttpRequest):
-    return HttpResponse("hello world")
+def get_all_categories(request):
+    return HttpResponse('i love js')

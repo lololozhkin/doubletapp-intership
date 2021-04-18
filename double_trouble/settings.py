@@ -9,6 +9,7 @@ DEBUG = (os.environ.get('DJANGO_DEBUG') or "False") == "True"
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

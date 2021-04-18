@@ -23,6 +23,8 @@ services:
       sh -c "/app/wait-for postgres:5432 --timeout 5 -- 
              python3 manage.py makemigrations &&
              python3 manage.py migrate &&
+             python3 manage.py createsuperuser_if_nonexist --username admin --password admin &&
+             python3 manage.py collectstatic
              gunicorn --bind 0.0.0.0:13337 --access-logfile - double_trouble.wsgi:application"
 
   postgres:
