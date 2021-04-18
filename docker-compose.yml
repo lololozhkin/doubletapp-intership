@@ -21,6 +21,7 @@ services:
 
     volumes:
       - static-files:/app/static/
+      - migration-volume:/app/api/migrations
 
     command: >
       sh -c "/app/wait-for postgres:5432 --timeout 5 -- 
@@ -53,3 +54,4 @@ services:
 volumes:
   words-db:
   static-files:
+  migration-volume:
