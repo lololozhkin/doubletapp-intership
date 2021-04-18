@@ -14,6 +14,11 @@ class Category(models.Model):
 
 
 class Level(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['code'], name='unique_code'),
+        ]
+
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=2)
 
