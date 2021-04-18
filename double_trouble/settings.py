@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY') or 'i love js'
 
 DEBUG = (os.environ.get('DJANGO_DEBUG') or "False") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
