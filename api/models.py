@@ -31,7 +31,7 @@ class Theme(models.Model):
     def __str__(self):
         return f'name: {self.name}, ' \
                f'category: {self.category}, ' \
-               f'level: {self.level}'
+               f'level: {self.level.code}'
 
 
 class Word(models.Model):
