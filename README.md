@@ -9,4 +9,5 @@ docker-compose up
 ```
 
 # Try it yourself
-At http://165.227.227.178:8080/api
+* http://165.227.227.178:8080/admin for admin pannel
+* http://165.227.227.178:8080/api for api methods
