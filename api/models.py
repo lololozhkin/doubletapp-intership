@@ -14,7 +14,7 @@ class Level(models.Model):
     code = models.CharField(max_length=2)
 
     def __str__(self):
-        return f'name: {self.name}, code: {self.code}'
+        return self.code
 
 
 class Theme(models.Model):
@@ -29,9 +29,7 @@ class Theme(models.Model):
     photo = models.URLField()
 
     def __str__(self):
-        return f'name: {self.name}, ' \
-               f'category: {self.category}, ' \
-               f'level: {self.level.code}'
+        return self.name
 
 
 class Word(models.Model):
@@ -43,4 +41,4 @@ class Word(models.Model):
     theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f'word: {self.name}, translation: {self.translation}'
+        return self.name
