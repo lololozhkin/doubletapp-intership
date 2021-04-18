@@ -7,6 +7,7 @@ WORKDIR /app
 RUN apk update \
     && apk add postgresql-dev gcc musl-dev \
     && pip3 install -r requirements.txt \
-    && rm -rf /var/cache/apk
+    && rm -rf /var/cache/apk \
+    && mkdir static
 
 COPY . .
